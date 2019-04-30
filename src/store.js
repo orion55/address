@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import axios from 'axios'
+import _ from 'lodash'
 
 Vue.use(Vuex, axios)
 
@@ -13,18 +14,20 @@ export default new Vuex.Store({
   },
   actions: {
     loadData ({commit}) {
-      axios.get(URL).then((response) => {
-        // console.log(response.data.results, this)
-        commit('updateAddress', response.data.results)
-        commit('changeLoadingState', false)
-      })
+      axios.get(URL)
+        .then((response) => {
+          commit('updateAddress', response.data.results)
+          commit('changeLoadingState', false)
+        })
     },
   },
   mutations: {
     updateAddress (state, address) {
+      let i = 0
       address.forEach((item) => {
           const location = item.location
           const obj = {
+            id: i,
             check: false,
             city: location.city.charAt(0).toUpperCase() + location.city.slice(1),
             street: location.street,
@@ -32,13 +35,13 @@ export default new Vuex.Store({
             sides: [
               {
                 name: 'A',
-                status: false,
+                status: Math.random() >= 0.5,
                 img: '',
                 lighting: false,
               },
               {
                 name: 'B',
-                status: false,
+                status: Math.random() >= 0.5,
                 img: '',
                 lighting: false,
               },
@@ -47,11 +50,16 @@ export default new Vuex.Store({
             size: location.state,
           }
           state.adds.push(obj)
+          i++
         },
       )
     },
     changeLoadingState (state, loading) {
       state.loading = loading
     },
+    changeCheck (state, index) {
+      let item = _.find(state.adds, {'id': index})
+      item.check = !item.check
+    }
   },
 })

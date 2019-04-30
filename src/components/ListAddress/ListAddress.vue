@@ -16,13 +16,27 @@
                     <div class="list-adds__col list-adds__col--4">Сторона</div>
                 </div>
                 <div class="list-adds__body">
-                    <div class="list-adds__item" v-for="item in adds">
+                    <div class="list-adds__item" v-for="item in adds" :key="item.id" @click="changeCheck(item.id)">
                         <div class="list-adds__column list-adds__col--1">
-                            <div class="list-adds--circle"></div>
+                            <div :class="[item.check ? 'list-adds--circle-solid': 'list-adds--circle' , 'list-adds--center']">
+                            </div>
                         </div>
-                        <div class="list-adds__column list-adds__col--2 list-adds__col--text">{{item.city}}</div>
-                        <div class="list-adds__column list-adds__col--3">{{item.street}}</div>
-                        <div class="list-adds__column list-adds__col--4">A</div>
+                        <div :class="[item.check ? 'list-addr--check' : '', 'list-adds__column', 'list-adds__col--2', 'list-adds__col--text', 'list-adds__col--space']">
+                            {{item.city}}
+                        </div>
+                        <div class="list-adds__column list-adds__col--3">
+                            <div :class="[item.check ? 'list-addr--check' : '','list-adds--headline', 'list-adds__col--text']">
+                                {{item.street}}
+                            </div>
+                            <div :class="[item.check ? 'list-addr--check' : '','list-adds--desc']">
+                                {{item.code}} {{item.size}}
+                            </div>
+                        </div>
+                        <div class="list-adds__column list-adds__col--4">
+                            <div :class="[item.check ? 'list-addr--check' : '','list-adds--center']">
+                                {{getSides(item.sides)}}
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <FooterAddress></FooterAddress>

@@ -16,7 +16,7 @@
 
 .list-adds__body {
   overflow: auto;
-  margin: 10px 4px 10px 10px;
+  margin: 10px 4px 10px 0;
   flex: 1;
 }
 
@@ -67,7 +67,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: 0 2px 4px rgba(217, 220, 227, 0.5);
-  padding: 10px 4px 10px 10px;
+  padding: 10px 4px 10px 0;
 }
 
 .list-adds__item {
@@ -75,6 +75,12 @@
   width: 100%;
   justify-content: center;
   align-items: center;
+  border-bottom: #EEF1F2 1px solid;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #F6F8F9;
+  }
 }
 
 .list-adds__wrap {
@@ -109,8 +115,36 @@
   background: url("../../assets/svg/circle-regular.svg") center no-repeat;
 }
 
+.list-adds--circle-solid {
+  width: 10px;
+  height: 10px;
+  background: url("../../assets/svg/circle-solid.svg") center no-repeat;
+}
+
 .list-adds__col--text {
   text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
+}
+
+.list-adds__col--space {
+  padding-right: 5px;
+}
+
+.list-adds--desc {
+  font-weight: 600;
+  font-size: 9px;
+  color: #868F98;
+}
+
+.list-adds--headline {
+  padding-bottom: 3px;
+}
+
+.list-adds--center {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.list-addr--check {
+  color: #245EF6;
 }
