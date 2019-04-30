@@ -26,7 +26,7 @@ export default new Vuex.Store({
           const location = item.location
           const obj = {
             check: false,
-            city: location.city,
+            city: location.city.charAt(0).toUpperCase() + location.city.slice(1),
             street: location.street,
             coordinates: Object.assign(location.coordinates),
             sides: [

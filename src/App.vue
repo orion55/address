@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  import ListAddress from './components/ListAddress.vue'
+  import ListAddress from './components/ListAddress/ListAddress.vue'
 
   export default {
     name: 'app',
